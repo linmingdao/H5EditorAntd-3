@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.blink-border {
+  border: 1px solid rgb(255, 255, 255);
+  /* border-radius: 16px; */
+  box-shadow: 0 0px 25px 0 rgb(255 255 255 / 1);
+}
