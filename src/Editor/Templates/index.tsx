@@ -6,10 +6,10 @@ import Item from "./Item";
 
 export interface SelectParam {
   key: string;
-  keyPath: Array<string>;
+  keyPath: string[];
   item: any;
   domEvent: Event;
-  selectedKeys: Array<string>;
+  selectedKeys: string[];
 }
 
 const Templates: React.FC = () => {
@@ -37,7 +37,7 @@ const Templates: React.FC = () => {
           <Menu
             mode="inline"
             theme="light"
-            inlineCollapsed
+            inlineCollapsed={true}
             onSelect={handleSelect}
             defaultSelectedKeys={["0"]}
           >

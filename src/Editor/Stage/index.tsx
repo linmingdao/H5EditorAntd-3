@@ -24,7 +24,9 @@ function renderFormItem(loader: Loader, item: any) {
       loader={loader}
       componentName={item.name}
       componentProps={props}
-      onValuesChange={() => {}}
+      onValuesChange={() => {
+        console.log("onValuesChange");
+      }}
     />
   );
 }
@@ -74,20 +76,26 @@ const Stage: React.FC = () => {
   const isActive = canDrop && isOver;
   let backgroundColor = stageBgColor ? stageBgColor : "#f3f2f2a3";
   const $collaOutline: any = document.querySelector(".colla-outline");
-  $collaOutline && ($collaOutline.style["backgroundColor"] = backgroundColor);
+  if ($collaOutline) {
+    $collaOutline.style["backgroundColor"] = backgroundColor;
+  }
   if (isActive) {
     backgroundColor = stageActiveColor ? stageActiveColor : "#1890ff2b";
-    $collaOutline && ($collaOutline.style["backgroundColor"] = backgroundColor);
+    if ($collaOutline) {
+      $collaOutline.style["backgroundColor"] = backgroundColor;
+    }
   } else if (canDrop) {
     backgroundColor = stageDropColor ? stageDropColor : "#1890ff1c";
-    $collaOutline && ($collaOutline.style["backgroundColor"] = backgroundColor);
+    if ($collaOutline) {
+      $collaOutline.style["backgroundColor"] = backgroundColor;
+    }
   }
 
   // 排序
   const moveFormItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
       const dragItem = stageItemList[dragIndex];
-      handleSort &&
+      if (handleSort)
         handleSort(
           update(stageItemList, {
             $splice: [
@@ -102,7 +110,7 @@ const Stage: React.FC = () => {
 
   function renderItem(item: any, index: number) {
     function handleValuesChange(changedValues: any, allValues: any) {
-      handleStageItemPropsChange &&
+      if (handleStageItemPropsChange)
         handleStageItemPropsChange(index, changedValues, allValues);
     }
     return (

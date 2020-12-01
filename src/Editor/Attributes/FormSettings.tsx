@@ -19,7 +19,7 @@ const FormGlobalSettings: React.FC<FormSettingsProps> = (props) => {
   const LayoutSettingsForm = Form.create<StageFormProps>({
     name: "LayoutSettingsForm",
     onValuesChange(props, changedValues, allValues) {
-      handleFormSettingsChange &&
+      if (handleFormSettingsChange)
         handleFormSettingsChange(changedValues, allValues);
     },
   })(

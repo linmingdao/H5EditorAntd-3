@@ -15,16 +15,12 @@
 
 /* end 统一的滚动条样式 */
 
-.editor {
-  height: 1000px;
-  width: 1500px;
-  margin-top: 50px;
-  color: #555;
-  background-color: #fff;
+.antd-form-editor {
   overflow: hidden;
+  background-color: #fff;
 }
 
-.editor .toolbar {
+.antd-form-editor .toolbar {
   height: 50px;
   margin-bottom: 2px;
   border-bottom: 1px solid #dedede;
@@ -36,7 +32,7 @@
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-.editor .content {
+.antd-form-editor .content {
   position: relative;
   display: flex;
   height: calc(100% - 53px);
@@ -44,21 +40,13 @@
 
 /* start 模板列表 */
 
-.editor .content .templates {
+.antd-form-editor .content .templates {
   width: 330px;
   height: 100%;
   display: flex;
 }
 
-.editor .content .templates .ant-menu-inline-collapsed {
-  width: 44px;
-}
-
-.editor .content .templates .ant-menu-inline-collapsed > .ant-menu-item {
-  padding: 0 !important;
-}
-
-.editor .content .templates .category {
+.antd-form-editor .content .templates .category {
   flex: 1;
   height: 100%;
   background-color: #fff;
@@ -66,7 +54,7 @@
   flex-direction: column;
 }
 
-.editor .content .templates .category .title {
+.antd-form-editor .content .templates .category .title {
   height: 44px;
   font-size: 20px;
   line-height: 44px;
@@ -78,7 +66,7 @@
   user-select: none;
 }
 
-.editor .content .templates .category .list {
+.antd-form-editor .content .templates .category .list {
   flex: 1;
   overflow-y: auto;
   display: flex;
@@ -87,38 +75,60 @@
   padding: 0 10px;
 }
 
-.editor .content .templates .category .list .item {
+.antd-form-editor .content .templates .category .list .item {
   display: inline-block;
   box-sizing: border-box;
   width: 50%;
   padding: 5px;
 }
 
-.editor .content .templates .category .list .item .item-content {
+.antd-form-editor .content .templates .category .list .item .item-content {
   border: 1px solid #dcdcdc;
   cursor: move;
 }
 
-.editor .content .templates .category .list .item .item-content:hover {
+.antd-form-editor
+  .content
+  .templates
+  .category
+  .list
+  .item
+  .item-content:hover {
   border-color: #1890ff;
 }
 
-.editor .content .templates .category .list .item .item-content .preview {
+.antd-form-editor
+  .content
+  .templates
+  .category
+  .list
+  .item
+  .item-content
+  .preview {
   height: 80px;
 }
 
-.editor .content .templates .category .list .item .item-content .name {
+.antd-form-editor
+  .content
+  .templates
+  .category
+  .list
+  .item
+  .item-content
+  .name {
+  text-align: center;
   font-size: 12px;
   height: 30px;
   line-height: 30px;
   background-color: #eee;
+  color: #686868;
 }
 
 /* end 模板列表 */
 
 /* start 中间布局 */
 
-.editor .content .stage {
+.antd-form-editor .content .stage {
   flex: 1;
   height: 100%;
   overflow-y: auto;
@@ -129,13 +139,13 @@
   user-select: none;
 }
 
-.editor .content .stage.empty-list {
+.antd-form-editor .content .stage.empty-list {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.editor .content .stage .item {
+.antd-form-editor .content .stage .item {
   padding: 10px;
   background-color: #fff;
   border: 1px solid #fff;
@@ -143,17 +153,16 @@
   align-items: center;
 }
 
-.editor .content .stage .item .operator {
+.antd-form-editor .content .stage .item .operator {
   width: 70px;
   height: 100%;
   font-size: 20px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.editor .content .stage .item .operator .drag-handler {
+.antd-form-editor .content .stage .item .operator .drag-handler {
   width: 30px;
   height: 30px;
   line-height: 30px;
@@ -161,13 +170,13 @@
   color: #8f8f8f;
 }
 
-.editor .content .stage .item .operator .dividing-line {
+.antd-form-editor .content .stage .item .operator .dividing-line {
   height: 30px;
   width: 1px;
   background-color: #dcdcdc;
 }
 
-.editor .content .stage .item .operator .remove-btn {
+.antd-form-editor .content .stage .item .operator .remove-btn {
   width: 30px;
   height: 30px;
   line-height: 30px;
@@ -175,19 +184,19 @@
   color: #f55757;
 }
 
-.editor .content .stage .item .component-wrapper {
+.antd-form-editor .content .stage .item .component-wrapper {
   flex: 1;
 }
 
-.editor .content .stage .item .component-wrapper .ant-form-item {
+.antd-form-editor .content .stage .item .component-wrapper .ant-form-item {
   margin-bottom: 0;
 }
 
-.editor .content .stage .item.selected {
+.antd-form-editor .content .stage .item.selected {
   border-color: #1890ff !important;
 }
 
-.editor .content .stage .item:hover {
+.antd-form-editor .content .stage .item:hover {
   border-color: #c8e4ff;
 }
 
@@ -195,14 +204,14 @@
 
 /* start colla */
 
-.editor .content .colla-outline {
+.antd-form-editor .content .colla-outline {
   background-color: #f3f2f2a3;
   width: 50px;
   height: 100%;
   position: relative;
 }
 
-.editor .content .colla-outline .colla {
+.antd-form-editor .content .colla-outline .colla {
   position: absolute;
   display: flex;
   align-items: center;
@@ -222,7 +231,7 @@
 
 /* start 属性设置面板 */
 
-.editor .content .attributes {
+.antd-form-editor .content .attributes {
   width: 300px;
   height: 100%;
   box-sizing: border-box;
@@ -231,13 +240,13 @@
   overflow-y: auto;
 }
 
-.editor .content .attributes.collapse {
+.antd-form-editor .content .attributes.collapse {
   right: 0;
   position: absolute;
   transform: translateX(100%);
 }
 
-.editor .content .attributes .title {
+.antd-form-editor .content .attributes .title {
   height: 44px;
   font-size: 20px;
   line-height: 44px;
@@ -253,7 +262,7 @@
   padding: 0 20px;
 }
 
-.editor .content .attributes .list {
+.antd-form-editor .content .attributes .list {
   flex: 1;
   font-size: 14px;
   color: #000;

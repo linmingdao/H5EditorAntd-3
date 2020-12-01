@@ -13,7 +13,7 @@ interface EditorProps {
 }
 
 const Editor: React.FC<EditorProps> = ({ className, style }) => {
-  const classes = classnames("editor", className);
+  const classes = classnames("antd-form-editor", className);
   const { collapse, setCollapse } = useContext(EditorContext);
 
   return (

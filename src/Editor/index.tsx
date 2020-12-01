@@ -85,7 +85,7 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
             return {
               ...item,
               props: {
-                ...item["props"],
+                ...item.props,
                 ...allValues,
               },
             };
@@ -110,8 +110,7 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
       if (item.type === ComponentType.Bricks) {
         updateStageItemList([{ ...item, id: nanoid() }], true);
       } else {
-        enableBuildingsFormSettings &&
-          item.formSettings &&
+        if (enableBuildingsFormSettings && item.formSettings)
           updateStageFormSettings(item.formSettings);
 
         updateStageItemList(

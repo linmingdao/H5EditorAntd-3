@@ -55,7 +55,7 @@ const SortableItem: React.FC<ISortableItemProps> = (props) => {
 
   function handleRemoveStageItem(e: React.MouseEvent) {
     e.stopPropagation();
-    handleRemove && handleRemove(id, index);
+    if (handleRemove) handleRemove(id, index);
   }
 
   return (
@@ -68,12 +68,10 @@ const SortableItem: React.FC<ISortableItemProps> = (props) => {
       >
         <div className="operator">
           <div ref={drag} className="drag-handler">
-            {/* <MenuOutlined translate="" /> */}
             <Icon type="menu" />
           </div>
-          <div className="dividing-line"></div>
+          <div className="dividing-line" />
           <div className="remove-btn" onClick={(e) => handleRemoveStageItem(e)}>
-            {/* <MinusCircleOutlined translate="" /> */}
             <Icon type="minus-circle" />
           </div>
         </div>

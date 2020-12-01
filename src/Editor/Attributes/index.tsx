@@ -27,7 +27,7 @@ const Attributes: React.FC<IAttributes> = (props) => {
 
   function renderAttr() {
     function handleValuesChange(changedValues: any, allValues: any) {
-      handleStageItemPropsChange &&
+      if (handleStageItemPropsChange)
         handleStageItemPropsChange(
           selectedStageItemIndex,
           changedValues,
