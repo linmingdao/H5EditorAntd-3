@@ -209,6 +209,7 @@
   width: 50px;
   height: 100%;
   position: relative;
+  color: #686868;
 }
 
 .antd-form-editor .content .colla-outline .colla {

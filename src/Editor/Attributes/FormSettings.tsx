@@ -8,9 +8,10 @@ import { FormComponentProps } from "antd/es/form";
 const { Option } = Select;
 
 const FormGlobalSettings: React.FC<FormSettingsProps> = (props) => {
-  const { handleFormSettingsChange, attLabelWrapperCol = [7, 17] } = useContext(
-    EditorContext
-  );
+  const {
+    handleFormSettingsChange,
+    attLabelWrapperCol = [12, 12],
+  } = useContext(EditorContext);
 
   interface StageFormProps extends FormComponentProps {
     initialValues: any;
@@ -43,62 +44,56 @@ const FormGlobalSettings: React.FC<FormSettingsProps> = (props) => {
           >
             <Form.Item label="name">
               {getFieldDecorator("name", {
-                rules: [{ required: true, message: "请输入" }],
                 initialValue: name,
               })(<Input placeholder="请输入" />)}
             </Form.Item>
             <Form.Item label="colon">
               {getFieldDecorator("colon", {
-                rules: [{ required: true, message: "请输入" }],
                 initialValue: colon,
               })(
                 <Select
                   style={{ width: "100%", textAlign: "left" }}
                   placeholder="请选择"
                 >
-                  <Option value="true">带冒号(:)</Option>
-                  <Option value="false">不带冒号(:)</Option>
+                  <Option value="true">带冒号</Option>
+                  <Option value="false">不带冒号</Option>
                 </Select>
               )}
             </Form.Item>
             <Form.Item label="layout">
               {getFieldDecorator("layout", {
-                rules: [{ required: true, message: "请输入" }],
                 initialValue: layout,
               })(
                 <Select
                   style={{ width: "100%", textAlign: "left" }}
                   placeholder="请选择"
                 >
-                  <Option value="horizontal">horizontal</Option>
-                  <Option value="vertical">vertical</Option>
-                  <Option value="inline">inline</Option>
+                  <Option value="horizontal">水平</Option>
+                  <Option value="vertical">垂直</Option>
+                  <Option value="inline">内联</Option>
                 </Select>
               )}
             </Form.Item>
-            <Form.Item label="labelAlign">
+            <Form.Item label="label align">
               {getFieldDecorator("labelAlign", {
-                rules: [{ required: true, message: "请输入" }],
                 initialValue: labelAlign,
               })(
                 <Select
                   style={{ width: "100%", textAlign: "left" }}
                   placeholder="请选择"
                 >
-                  <Option value="right">right</Option>
-                  <Option value="left">left</Option>
+                  <Option value="right">右对齐</Option>
+                  <Option value="left">左对齐</Option>
                 </Select>
               )}
             </Form.Item>
-            <Form.Item label="labelCol">
+            <Form.Item label="label col">
               {getFieldDecorator("labelCol", {
-                rules: [{ required: true, message: "请输入" }],
                 initialValue: labelCol,
               })(<Input type="number" placeholder="请输入" />)}
             </Form.Item>
-            <Form.Item label="wrapperCol">
+            <Form.Item label="wrapper col">
               {getFieldDecorator("wrapperCol", {
-                rules: [{ required: true, message: "请输入" }],
                 initialValue: wrapperCol,
               })(<Input type="number" placeholder="请输入" />)}
             </Form.Item>

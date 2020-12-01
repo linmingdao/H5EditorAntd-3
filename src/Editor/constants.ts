@@ -17,6 +17,6 @@ export const defaultFormSettings: FormSettingsProps = {
   colon: "true",
   layout: "horizontal",
   labelAlign: "right",
-  labelCol: 6,
-  wrapperCol: 18,
+  labelCol: 12,
+  wrapperCol: 12,
 };

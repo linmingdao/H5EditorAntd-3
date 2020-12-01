@@ -118,6 +118,10 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
             ...item,
             id: nanoid(),
             type: ComponentType.Bricks,
+            props: {
+              ...item.props,
+              name: nanoid(),
+            },
           })),
           true
         );

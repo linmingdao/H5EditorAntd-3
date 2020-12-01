@@ -15,7 +15,7 @@ const App: React.FC = () => {
           stageActiveColor="#1890ff2b"
           stageDropColor="#1890ff1c"
           className="blink-border"
-          attLabelWrapperCol={[7, 17]}
+          attLabelWrapperCol={[12, 12]}
           style={{ width: 1200, height: 700 }}
           enableBuildingsFormSettings={true}
           bricks={{
