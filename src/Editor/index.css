@@ -168,6 +168,7 @@
   line-height: 30px;
   cursor: move;
   color: #8f8f8f;
+  text-align: center;
 }
 
 .antd-form-editor .content .stage .item .operator .dividing-line {
@@ -182,6 +183,7 @@
   line-height: 30px;
   cursor: pointer;
   color: #f55757;
+  text-align: center;
 }
 
 .antd-form-editor .content .stage .item .component-wrapper {
