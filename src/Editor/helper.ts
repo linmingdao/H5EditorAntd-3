@@ -24,14 +24,11 @@ export function getUniformTmplGroupList(
       title: "基础组件",
       loader: bricks.loader,
       // [ { id, type: "Bricks", label, name, props } ]
-      components:
-        (bricks.getComponents &&
-          bricks.getComponents().map((item) => ({
-            ...item,
-            id: nanoid(),
-            type: ComponentType.Bricks,
-          }))) ||
-        [],
+      components: bricks.components.map((item) => ({
+        ...item,
+        id: nanoid(),
+        type: ComponentType.Bricks,
+      })),
     },
     // 建筑组件分组
     ...buildings.map((item: BuildingTemplateGroup) => ({
@@ -39,35 +36,13 @@ export function getUniformTmplGroupList(
       title: item.title,
       updateComponents: item.updateComponents,
       // [ { id, type: "Buildings", label, composes } ]
-      components:
-        (item.getComponents &&
-          item.getComponents().map((item) => ({
-            ...item,
-            id: nanoid(),
-            type: ComponentType.Buildings,
-          }))) ||
-        [],
+      components: item.components.map((item) => ({
+        ...item,
+        id: nanoid(),
+        type: ComponentType.Buildings,
+      })),
     })),
   ];
-}
-
-export async function requestComponents(
-  bricks: BrickTemplate,
-  buildings: BuildingTemplateGroupList
-) {
-  const dfds: any = [bricks.getComponents()];
-  buildings.forEach((item: BuildingTemplateGroup) =>
-    dfds.push(item.getComponents())
-  );
-  const res = await Promise.all(dfds);
-  bricks.components = res[0] as any[];
-  buildings = buildings.map((item, index) => {
-    return {
-      ...item,
-      components: res[index + 1] as any[],
-    };
-  });
-  return getUniformTmplGroupList(bricks, buildings);
 }
 
 // export function updateBuildingsComponents(buildings: BuildingTemplateGroupList, index) {

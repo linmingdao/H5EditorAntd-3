@@ -1,8 +1,8 @@
 import React from "react";
-import "antd/dist/antd.css";
-import "./App.css";
-import H5Editor, { renderForm } from "./Editor";
 import { Icon } from "antd";
+import "antd/dist/antd.css";
+import H5Editor, { renderForm } from "./Editor";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
@@ -21,7 +21,7 @@ const App: React.FC = () => {
           bricks={{
             icon: <Icon type="build" />,
             loader: (name: string) => () => import(`./Bricks/${name}`),
-            getComponents: () => [
+            components: [
               {
                 label: "输入框",
                 name: "TextInput",
@@ -33,9 +33,9 @@ const App: React.FC = () => {
           }}
           buildings={[
             {
-              icon: <Icon type="pie-chart" />,
               title: "模板组件",
-              getComponents: () => [
+              icon: <Icon type="pie-chart" />,
+              components: [
                 {
                   label: "文章模板",
                   formSettings: {

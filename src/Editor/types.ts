@@ -21,8 +21,7 @@ export interface BrickComponent {
 export interface BrickTemplate {
   icon?: React.ReactNode;
   loader: Loader;
-  components?: any[];
-  getComponents: () => BrickComponent[];
+  components: BrickComponent[];
 }
 
 export interface BuildingComponent {
@@ -35,8 +34,7 @@ export interface BuildingComponent {
 export interface BuildingTemplateGroup {
   icon?: React.ReactNode;
   title: string;
-  components?: any[];
-  getComponents: () => BuildingComponent[];
+  components: BuildingComponent[];
   updateComponents: (config: any, formSettings: any) => void;
 }
 
