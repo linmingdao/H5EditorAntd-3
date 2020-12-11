@@ -16,11 +16,12 @@ const App: React.FC = () => {
           stageDropColor="#1890ff1c"
           className="blink-border"
           attLabelWrapperCol={[12, 12]}
-          style={{ width: 1200, height: 700 }}
+          style={{ width: 1300, height: 700 }}
           enableBuildingsFormSettings={true}
           bricks={{
             icon: <Icon type="build" />,
-            loader: (name: string) => () => import(`./Bricks/${name}`),
+            loader: (name: string) => () =>
+              import(`./Bricks/Components/${name}`),
             components: [
               {
                 label: "输入框",
@@ -88,17 +89,9 @@ const App: React.FC = () => {
             marginTop: 30,
           }}
         >
-          {renderForm((name: string) => () => import(`./Bricks/${name}`), {
-            label: "文章模板",
-            formSettings: {
-              name: "wqVKsHCXQqwP3SCz85rO6",
-              colon: "true",
-              layout: "horizontal",
-              labelAlign: "right",
-              labelCol: 6,
-              wrapperCol: 18,
-            },
-            composes: [
+          {renderForm(
+            (name: string) => () => import(`./Bricks/Components/${name}`),
+            [
               {
                 label: "输入框",
                 name: "TextInput",
@@ -131,8 +124,8 @@ const App: React.FC = () => {
                 id: "3Q4WzAHjSk7QAlaWlctaB",
                 type: "bricks",
               },
-            ],
-          })}
+            ]
+          )}
         </div>
       </header>
     </div>

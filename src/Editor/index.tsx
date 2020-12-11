@@ -13,7 +13,7 @@ import {
 } from "./types";
 import { getUniformTmplGroupList } from "./helper";
 import "./index.css";
-export { renderForm } from "./Stage";
+export { renderForm } from "./Stage/SortableItem";
 
 export const EditorContext = React.createContext<H5EditorContext>({
   formSettings: { ...defaultFormSettings },
@@ -49,6 +49,7 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
   );
 
   function updateStageItemList(list: StageItem[], needMerge: boolean = false) {
+    console.log(list);
     setStageItemList((preList) => {
       const newList = needMerge ? [...preList, ...list] : list;
       return newList;
@@ -74,7 +75,7 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
     collapse,
     setCollapse,
     selectedStageItemIndex,
-    handleStageItemPropsChange(
+    handleAttrPropsChange(
       selectedIndex: number,
       changedValues: any,
       allValues: any

@@ -1,33 +1,21 @@
 import React from "react";
 import { Form, Input } from "antd";
 
-const Stage = Form.create({ name: "Stage" })(
-  class extends React.Component {
-    render() {
-      const { form, label, name, value, placeholder } = this.props;
-      const { getFieldDecorator } = form;
-      return (
-        <Form.Item label={label}>
-          {getFieldDecorator(name, {
-            rules: [{ required: true, message: "请输入" }],
-            initialValue: value,
-          })(<Input placeholder={placeholder} />)}
-        </Form.Item>
-      );
-    }
-  }
-);
+function Stage(props) {
+  const { value, placeholder } = props;
+  return <Input placeholder={placeholder} value={value} />;
+}
 
 const Attr = Form.create({
   name: "Attr",
   onValuesChange(props, changedValues, allValues) {
-    props.onValuesChange(changedValues, allValues);
+    props.onAttrPropsChange(changedValues, allValues);
   },
 })(
   class extends React.Component {
     render() {
-      const { form, name, value, label, placeholder } = this.props;
-      const { getFieldDecorator } = form;
+      const { name, value, label, placeholder } = this.props;
+      const { getFieldDecorator } = this.props.form;
       return (
         <Form
           labelCol={{ span: 8 }}

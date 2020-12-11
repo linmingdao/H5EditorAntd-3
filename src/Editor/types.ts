@@ -108,7 +108,7 @@ export interface H5EditorContext {
   collapse: boolean;
   setCollapse: (collapse: boolean) => void;
   selectedStageItemIndex: number;
-  handleStageItemPropsChange?: (
+  handleAttrPropsChange?: (
     selectedIndex: number,
     changedValues: any,
     allValues?: any

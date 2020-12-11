@@ -22,17 +22,13 @@ const Attributes: React.FC<IAttributes> = (props) => {
     formSettings,
     stageItemList,
     selectedStageItemIndex,
-    handleStageItemPropsChange,
+    handleAttrPropsChange,
   } = useContext(EditorContext);
 
   function renderAttr() {
-    function handleValuesChange(changedValues: any, allValues: any) {
-      if (handleStageItemPropsChange)
-        handleStageItemPropsChange(
-          selectedStageItemIndex,
-          changedValues,
-          allValues
-        );
+    function onAttrPropsChange(changedValues: any, allValues: any) {
+      handleAttrPropsChange &&
+        handleAttrPropsChange(selectedStageItemIndex, changedValues, allValues);
     }
 
     const config = stageItemList[selectedStageItemIndex];
@@ -40,10 +36,12 @@ const Attributes: React.FC<IAttributes> = (props) => {
       <div>
         <DynamicEngine
           key={selectedStageItemIndex}
-          mode={Mode.Attr}
           componentName={config.name}
-          componentProps={config.props}
-          onValuesChange={handleValuesChange}
+          componentProps={{
+            ...config.props,
+            mode: Mode.Attr,
+            onAttrPropsChange,
+          }}
         />
       </div>
     ) : (

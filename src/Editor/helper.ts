@@ -45,10 +45,6 @@ export function getUniformTmplGroupList(
   ];
 }
 
-// export function updateBuildingsComponents(buildings: BuildingTemplateGroupList, index) {
-//   const a = buildings[index];
-// }
-
 export function convertFormSettings(settings: FormSettingsProps = {}) {
   return {
     ...settings,
