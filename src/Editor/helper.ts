@@ -6,6 +6,8 @@ import {
   BuildingGroup,
   UniformTmplGroupList,
   FormSettingsProps,
+  StageItem,
+  PlainMap,
 } from "./types";
 
 /**
@@ -63,4 +65,19 @@ export function getComponentErrorTips(name?: string) {
   } else {
     return "<span style='color:#f5222d;font-size:14px;'>请设置 name 属性哟~~</span>";
   }
+}
+
+export function checkStageName(stageItemList: StageItem[]): string {
+  const nameMap: PlainMap = {};
+  for (let item of stageItemList) {
+    const name = item.props.name;
+    if (!name || !name.trim()) {
+      return "表单控件的【name】属性不能为空哟~~";
+    }
+    if (nameMap[name]) {
+      return "表单控件的【name】属性要保证唯一哟~~";
+    }
+    nameMap[name] = name;
+  }
+  return "";
 }

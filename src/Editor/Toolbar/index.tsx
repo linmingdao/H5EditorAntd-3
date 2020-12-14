@@ -1,18 +1,27 @@
 import React, { useContext } from "react";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 import { BuildingGroup } from "../types";
 import { EditorContext } from "../index";
+import { checkStageName } from "../helper";
 
 const Toolbar: React.FC = () => {
   const {
-    // handleUndo,
-    // handleRedo,
-    // handleReset,
     formSettings,
     stageItemList,
     uniformTmplGroupList,
     handleClear,
   } = useContext(EditorContext);
+
+  function handleUpdateComponents(
+    updateComponents: (composes: any, formSettings: any) => void
+  ) {
+    const msg = checkStageName(stageItemList);
+    if (!msg) {
+      updateComponents && updateComponents(stageItemList, formSettings);
+    } else {
+      notification.error({ message: "Tips", description: msg });
+    }
+  }
 
   function renderCustomButtons(): React.ReactNode[] {
     let btns: React.ReactNode[] = [];
@@ -23,10 +32,7 @@ const Toolbar: React.FC = () => {
           <Button
             key={item.title}
             type="link"
-            onClick={() =>
-              groupItem.updateComponents &&
-              groupItem.updateComponents(stageItemList, formSettings)
-            }
+            onClick={() => handleUpdateComponents(groupItem.updateComponents)}
           >
             {`保存成${item.title}`}
           </Button>
@@ -45,7 +51,7 @@ const Toolbar: React.FC = () => {
         恢 复
       </Button> */}
       <Button type="link" onClick={() => handleClear && handleClear()}>
-        清 空
+        清空面板
       </Button>
       {/* <Button type="link" onClick={() => handleReset && handleReset()}>
         重 置

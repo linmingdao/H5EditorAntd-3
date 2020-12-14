@@ -64,14 +64,14 @@ const App: React.FC = () => {
       <header className="App-header">
         <H5Editor
           showTmplMenu={false}
-          tmplPanelWidth={380}
-          attrPanelWidth={380}
+          tmplPanelWidth={300}
+          attrPanelWidth={320}
           stageBgColor="#f3f2f2a3"
           stageActiveColor="#1890ff2b"
           stageDropColor="#1890ff1c"
           className="blink-border"
           attLabelWrapperCol={[8, 16]}
-          style={{ width: 1500, height: 600 }}
+          style={{ width: 1200, height: 600 }}
           enableBuildingsFormSettings={false}
           bricks={{
             loader: (name: string) => () =>
