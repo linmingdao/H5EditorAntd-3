@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Button } from "antd";
-import { BuildingTemplateGroup } from "../types";
+import { BuildingGroup } from "../types";
 import { EditorContext } from "../index";
 
 const Toolbar: React.FC = () => {
@@ -17,7 +17,7 @@ const Toolbar: React.FC = () => {
   function renderCustomButtons(): React.ReactNode[] {
     let btns: React.ReactNode[] = [];
     uniformTmplGroupList.forEach((item, index) => {
-      let groupItem = item as BuildingTemplateGroup;
+      let groupItem = item as BuildingGroup;
       if (index !== 0) {
         btns.push(
           <Button

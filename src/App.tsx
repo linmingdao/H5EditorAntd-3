@@ -1,9 +1,10 @@
+import "./App.css";
 import React, { useState } from "react";
 import { Icon } from "antd";
 import "antd/dist/antd.css";
 import { Divider, Button } from "antd";
+import { BrickComponents } from "./Bricks";
 import H5Editor, { renderFormByRegister } from "./Editor";
-import "./App.css";
 
 const App: React.FC = () => {
   const [composes, setComposes] = useState<any[]>([
@@ -73,45 +74,10 @@ const App: React.FC = () => {
           style={{ width: 1500, height: 600 }}
           enableBuildingsFormSettings={false}
           bricks={{
-            icon: <Icon type="build" />,
             loader: (name: string) => () =>
               import(`./Bricks/Components/${name}`),
-            components: [
-              {
-                label: "输入框",
-                name: "TextInput",
-                props: {
-                  value: "我是输入框的默认值",
-                },
-              },
-              {
-                label: "文本域",
-                name: "TextArea",
-                props: {
-                  value: "我是文本域的默认值",
-                },
-              },
-              {
-                label: "下拉框",
-                name: "Selector",
-              },
-              {
-                label: "单选框",
-                name: "RadioGroup",
-              },
-              {
-                label: "复选框",
-                name: "CheckboxGroup",
-              },
-              {
-                label: "添加注释",
-                name: "Notes",
-              },
-              {
-                label: "日期选择器",
-                name: "DateTimeSelect",
-              },
-            ],
+            icon: <Icon type="build" />,
+            components: BrickComponents,
           }}
           buildings={[
             {

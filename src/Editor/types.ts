@@ -1,84 +1,92 @@
 import React from "react";
-import { ComponentType } from "./constants";
 
 export type Loader = (name: string) => any;
 
-export interface ObjProps {
+export interface PlainMap {
   [key: string]: any;
+  [index: number]: any;
 }
 
-// 传入 H5Editor 的 props 结构定义
+// start H5Editor 的 props bricks 结构定义
 
 export interface BrickComponent {
-  type?: string;
-  id?: string;
   label: string;
   name: string;
-  loader?: Loader;
-  props?: ObjProps;
+  instance: React.FunctionComponent;
+  props?: PlainMap;
 }
 
-export interface BrickTemplate {
+export interface BrickComponentMap {
+  [key: string]: BrickComponent;
+  [index: number]: BrickComponent;
+}
+
+export interface Bricks {
+  loader?: Loader;
+  title?: string;
   icon?: React.ReactNode;
-  loader: Loader;
-  components: BrickComponent[];
+  components: BrickComponentMap;
+}
+
+// end H5Editor 的 props bricks 结构定义
+
+// start H5Editor 的 props buildings 结构定义
+
+export interface BuildingCompose {
+  label: string;
+  name: string;
+  props?: PlainMap;
 }
 
 export interface BuildingComponent {
   label: string;
-  formSettings?: ObjProps;
-  composes: BrickComponent[];
-  updateComponents?: (config: any) => void;
+  formSettings?: PlainMap;
+  composes: BuildingCompose[];
 }
 
-export interface BuildingTemplateGroup {
+export interface BuildingGroup {
+  title?: string;
   icon?: React.ReactNode;
-  title: string;
   components: BuildingComponent[];
-  updateComponents: (config: any, formSettings: any) => void;
+  updateComponents: (composes: any, formSettings: any) => void;
 }
 
-export type BuildingTemplateGroupList = BuildingTemplateGroup[];
+export type Buildings = BuildingGroup[];
 
-// 基础组件 和 建筑组件 统一的数据结构
+// end H5Editor 的 props buildings 结构定义
 
-export interface UniformBrickTmplProps {
-  [key: string]: any;
-}
+// start 基础组件 和 建筑组件 统一的数据结构
 
-export interface UniformBrickTmpl {
+export interface UniformBrick {
   id: string;
-  type: ComponentType.Bricks;
+  type: string;
   label: string;
-  name: string;
-  props: UniformBrickTmplProps;
+  name?: string;
+  props?: PlainMap;
+  instance?: React.FunctionComponent;
 }
 
-export interface UniformBuildingTmpl {
+export interface UniformBuilding {
   id: string;
   type: "Buildings";
   label: string;
-  composes: UniformBrickTmpl[];
+  composes: UniformBrick[];
 }
 
-// TODO:处理这里的类型检查
-// export type UniformTmpl = UniformBrickTmpl | UniformBuildingTmpl;
-
-// 统一的模板组件分组
-export interface UniformTmplGroup {
-  icon?: React.ReactNode;
-  // 非 Bricks 组件无 loader
-  loader?: Loader;
+export interface UniformGroup {
   title: string;
-  components: any[];
+  components: UniformBrick[] | UniformBuilding[];
+  icon?: React.ReactNode;
+  updateComponents?: (composes: any, formSettings: any) => void;
 }
 
-// 统一的模板组件分组列表
-export type UniformTmplGroupList = UniformTmplGroup[];
+export type UniformTmplGroupList = UniformGroup[];
+
+// end 基础组件 和 建筑组件 统一的数据结构
 
 export interface H5EditorProps {
-  bricks: BrickTemplate;
-  buildings: BuildingTemplateGroupList;
+  bricks: Bricks;
+  buildings: Buildings;
   showTmplMenu?: boolean;
   stageBgColor?: string;
   stageActiveColor?: string;
@@ -91,11 +99,9 @@ export interface H5EditorProps {
   style?: React.CSSProperties;
 }
 
-export type SelectedCallback = (selectedIndex: number) => void;
-
-export type NoSelectedCallback = () => void;
-
 export interface H5EditorContext {
+  bricks: Bricks;
+  buildings: Buildings;
   showTmplMenu?: boolean;
   stageBgColor?: string;
   stageActiveColor?: string;
@@ -109,8 +115,8 @@ export interface H5EditorContext {
   uniformTmplGroupList: UniformTmplGroupList;
   stageItemList: StageItem[];
   collapse: boolean;
-  setCollapse: (collapse: boolean) => void;
   selectedStageItemIndex: number;
+  setCollapse: (collapse: boolean) => void;
   handleAttrPropsChange?: (
     selectedIndex: number,
     changedValues: any,
@@ -118,15 +124,17 @@ export interface H5EditorContext {
   ) => void;
   handleFormSettingsChange?: (changedValues: any, allValues?: any) => void;
   handleDrop?: (item: any) => void;
-  handleClear?: NoSelectedCallback;
-  handleSelect?: SelectedCallback;
+  handleClear?: () => void;
+  handleSelect?: (selectedIndex: number) => void;
   handleSort?: (stageItemList: StageItem[]) => void;
-  handleCopy?: SelectedCallback;
+  handleCopy?: (selectedIndex: number) => void;
   handleRemove?: (id: string, index: number) => void;
-  handleReset?: NoSelectedCallback;
-  handleUndo?: NoSelectedCallback;
-  handleRedo?: NoSelectedCallback;
+  handleReset?: () => void;
+  handleUndo?: () => void;
+  handleRedo?: () => void;
 }
+
+// start 舞台项 类型定义
 
 export interface StageItem {
   id: string;
@@ -134,13 +142,12 @@ export interface StageItem {
   props: any;
 }
 
-export interface BrickSchema {
-  onAttributesChange: (attrs: any) => void;
-}
+// end 舞台项 类型定义
 
-type labelAlignLiteral = "right" | "left";
-type layoutLiteral = "horizontal" | "vertical" | "inline";
+// start 全局属性面板类型定义
 
+export type labelAlignLiteral = "right" | "left";
+export type layoutLiteral = "horizontal" | "vertical" | "inline";
 export interface FormSettingsProps {
   name?: string;
   colon?: string;
@@ -149,3 +156,5 @@ export interface FormSettingsProps {
   labelCol?: number;
   wrapperCol?: number;
 }
+
+// end 全局属性面板类型定义

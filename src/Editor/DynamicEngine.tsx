@@ -57,10 +57,8 @@ export interface DynamicEngineProps {
 }
 
 const DynamicEngine = memo((props: DynamicEngineProps) => {
-  // console.log("DynamicEngine")
-  // console.log(props)
-  const { uniformTmplGroupList } = useContext(EditorContext);
-  const loader = props.loader ? props.loader : uniformTmplGroupList[0].loader;
+  const { bricks } = useContext(EditorContext);
+  const loader = props.loader ? props.loader : bricks.loader;
   const { componentName, componentProps, onChange } = props;
   const reactiveComponentProps = { ...componentProps, onChange };
 

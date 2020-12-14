@@ -1,3 +1,4 @@
+import "./index.css";
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import { Empty } from "antd";
@@ -12,10 +13,13 @@ import {
   StageItem,
 } from "./types";
 import { getUniformTmplGroupList } from "./helper";
-import "./index.css";
-export { renderFormByRegister, renderFormByDynamicEngine } from "./Deserialize";
+export { renderFormByRegister } from "./Deserialize";
 
 export const EditorContext = React.createContext<H5EditorContext>({
+  bricks: {
+    components: {},
+  },
+  buildings: [],
   formSettings: { ...defaultFormSettings },
   uniformTmplGroupList: [],
   stageItemList: [],
@@ -50,7 +54,6 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
   );
 
   function updateStageItemList(list: StageItem[], needMerge: boolean = false) {
-    console.log(list);
     setStageItemList((preList) => {
       const newList = needMerge ? [...preList, ...list] : list;
       return newList;
@@ -63,6 +66,8 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
   }
 
   const passedContext: H5EditorContext = {
+    bricks,
+    buildings,
     showTmplMenu,
     stageBgColor,
     stageActiveColor,
@@ -76,8 +81,8 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
     uniformTmplGroupList: getUniformTmplGroupList(bricks, buildings),
     stageItemList,
     collapse,
-    setCollapse,
     selectedStageItemIndex,
+    setCollapse,
     handleAttrPropsChange(
       selectedIndex: number,
       changedValues: any,

@@ -1,9 +1,9 @@
 import { nanoid } from "nanoid";
 import { ComponentType } from "./constants";
 import {
-  BrickTemplate,
-  BuildingTemplateGroup,
-  BuildingTemplateGroupList,
+  Bricks,
+  Buildings,
+  BuildingGroup,
   UniformTmplGroupList,
   FormSettingsProps,
 } from "./types";
@@ -14,26 +14,25 @@ import {
  * @param buildings 业务模板
  */
 export function getUniformTmplGroupList(
-  bricks: BrickTemplate,
-  buildings: BuildingTemplateGroupList
+  bricks: Bricks,
+  buildings: Buildings
 ): UniformTmplGroupList {
   return [
     // 基础组件分组信息
     {
       icon: bricks.icon,
-      title: "基础组件",
-      loader: bricks.loader,
-      // [ { id, type: "Bricks", label, name, props } ]
-      components: bricks.components.map((item) => ({
-        ...item,
+      title: bricks.title || "基础组件",
+      // [ { id, type: "Bricks", label, name, props, instance } ]
+      components: Object.keys(bricks.components).map((key) => ({
+        ...bricks.components[key],
         id: nanoid(),
         type: ComponentType.Bricks,
       })),
     },
     // 建筑组件分组
-    ...buildings.map((item: BuildingTemplateGroup) => ({
+    ...buildings.map((item: BuildingGroup, index: number) => ({
       icon: item.icon,
-      title: item.title,
+      title: item.title || `上层组件_${index}`,
       updateComponents: item.updateComponents,
       // [ { id, type: "Buildings", label, composes } ]
       components: item.components.map((item) => ({

@@ -4,14 +4,6 @@ import { Menu, Icon } from "antd";
 import List from "./List";
 import Item from "./Item";
 
-export interface SelectParam {
-  key: string;
-  keyPath: string[];
-  item: any;
-  domEvent: Event;
-  selectedKeys: string[];
-}
-
 const Templates: React.FC = () => {
   const { showTmplMenu, tmplPanelWidth, uniformTmplGroupList } = useContext(
     EditorContext
@@ -23,7 +15,13 @@ const Templates: React.FC = () => {
       : []
   );
 
-  const handleSelect = (item: SelectParam) => {
+  const handleSelect = (item: {
+    key: string;
+    keyPath: string[];
+    item: any;
+    domEvent: Event;
+    selectedKeys: string[];
+  }) => {
     const index = Number(item.key);
     setCurrentGroupIndex(index);
     setCurrentComponents(uniformTmplGroupList[index]["components"]);
@@ -57,7 +55,7 @@ const Templates: React.FC = () => {
               {uniformTmplGroupList[currentGroupIndex]["title"]}
             </div>
             <List>
-              {currentComponents.map((item: any) => (
+              {(currentComponents as any[]).map((item: any) => (
                 <Item key={item.id} config={item} />
               ))}
             </List>
