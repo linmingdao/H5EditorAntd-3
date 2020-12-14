@@ -13,7 +13,9 @@ export interface SelectParam {
 }
 
 const Templates: React.FC = () => {
-  const { tmplPanelWidth, uniformTmplGroupList } = useContext(EditorContext);
+  const { showTmplMenu, tmplPanelWidth, uniformTmplGroupList } = useContext(
+    EditorContext
+  );
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
   const [currentComponents, setCurrentComponents] = useState(
     uniformTmplGroupList && uniformTmplGroupList.length > 0
@@ -34,20 +36,22 @@ const Templates: React.FC = () => {
     >
       {uniformTmplGroupList && uniformTmplGroupList.length > 0 ? (
         <>
-          <Menu
-            mode="inline"
-            theme="light"
-            inlineCollapsed={true}
-            onSelect={handleSelect}
-            defaultSelectedKeys={["0"]}
-          >
-            {uniformTmplGroupList.map((item, index) => (
-              <Menu.Item key={index}>
-                {item.icon ? item.icon : <Icon type="build" />}
-                <span>{item.title}</span>
-              </Menu.Item>
-            ))}
-          </Menu>
+          {showTmplMenu && (
+            <Menu
+              mode="inline"
+              theme="light"
+              inlineCollapsed={true}
+              onSelect={handleSelect}
+              defaultSelectedKeys={["0"]}
+            >
+              {uniformTmplGroupList.map((item, index) => (
+                <Menu.Item key={index}>
+                  {item.icon ? item.icon : <Icon type="build" />}
+                  <span>{item.title}</span>
+                </Menu.Item>
+              ))}
+            </Menu>
+          )}
           <div className="category">
             <div className="title">
               {uniformTmplGroupList[currentGroupIndex]["title"]}

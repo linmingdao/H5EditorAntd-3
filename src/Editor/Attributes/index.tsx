@@ -22,6 +22,7 @@ const Attributes: React.FC<IAttributes> = (props) => {
     formSettings,
     stageItemList,
     selectedStageItemIndex,
+    enableBuildingsFormSettings,
     handleAttrPropsChange,
   } = useContext(EditorContext);
 
@@ -56,10 +57,14 @@ const Attributes: React.FC<IAttributes> = (props) => {
     >
       <div className="title">Item 属性设置</div>
       <div className="list">{renderAttr()}</div>
-      <div className="title">Form 属性设置</div>
-      <div className="list">
-        <FormSettings {...formSettings} />
-      </div>
+      {enableBuildingsFormSettings && (
+        <>
+          <div className="title">Form 属性设置</div>
+          <div className="list">
+            <FormSettings {...formSettings} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -79,6 +79,7 @@ export type UniformTmplGroupList = UniformTmplGroup[];
 export interface H5EditorProps {
   bricks: BrickTemplate;
   buildings: BuildingTemplateGroupList;
+  showTmplMenu?: boolean;
   stageBgColor?: string;
   stageActiveColor?: string;
   stageDropColor?: string;
@@ -95,12 +96,14 @@ export type SelectedCallback = (selectedIndex: number) => void;
 export type NoSelectedCallback = () => void;
 
 export interface H5EditorContext {
+  showTmplMenu?: boolean;
   stageBgColor?: string;
   stageActiveColor?: string;
   stageDropColor?: string;
   tmplPanelWidth?: number;
   attrPanelWidth?: number;
   attLabelWrapperCol?: [number, number];
+  enableBuildingsFormSettings?: boolean;
   emptyImageType: React.ReactNode;
   formSettings: FormSettingsProps;
   uniformTmplGroupList: UniformTmplGroupList;

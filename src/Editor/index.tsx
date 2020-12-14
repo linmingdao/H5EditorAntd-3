@@ -27,6 +27,7 @@ export const EditorContext = React.createContext<H5EditorContext>({
 
 const H5Editor: React.FC<H5EditorProps> = (props) => {
   const {
+    showTmplMenu,
     stageBgColor,
     stageActiveColor,
     stageDropColor,
@@ -62,12 +63,14 @@ const H5Editor: React.FC<H5EditorProps> = (props) => {
   }
 
   const passedContext: H5EditorContext = {
+    showTmplMenu,
     stageBgColor,
     stageActiveColor,
     stageDropColor,
     tmplPanelWidth,
     attrPanelWidth,
     attLabelWrapperCol,
+    enableBuildingsFormSettings,
     emptyImageType: Empty.PRESENTED_IMAGE_SIMPLE,
     formSettings,
     uniformTmplGroupList: getUniformTmplGroupList(bricks, buildings),

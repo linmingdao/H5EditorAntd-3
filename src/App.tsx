@@ -62,15 +62,16 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <H5Editor
+          showTmplMenu={false}
           tmplPanelWidth={380}
           attrPanelWidth={380}
           stageBgColor="#f3f2f2a3"
           stageActiveColor="#1890ff2b"
           stageDropColor="#1890ff1c"
           className="blink-border"
-          attLabelWrapperCol={[12, 12]}
+          attLabelWrapperCol={[8, 16]}
           style={{ width: 1500, height: 600 }}
-          enableBuildingsFormSettings={true}
+          enableBuildingsFormSettings={false}
           bricks={{
             icon: <Icon type="build" />,
             loader: (name: string) => () =>
