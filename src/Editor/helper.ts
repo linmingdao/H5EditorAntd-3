@@ -57,3 +57,11 @@ export function convertFormSettings(settings: FormSettingsProps = {}) {
     },
   };
 }
+
+export function getComponentErrorTips(name?: string) {
+  if (name) {
+    return "";
+  } else {
+    return "<span style='color:#f5222d;font-size:14px;'>请设置 name 属性哟~~</span>";
+  }
+}

@@ -1,13 +1,10 @@
 import React, { useContext, useRef } from "react";
 import { XYCoord } from "dnd-core";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
-import { Icon, Form } from "antd";
-import { Mode } from "../constants";
-import DynamicEngine from "../DynamicEngine";
+import { Icon } from "antd";
 import classnames from "classnames";
+import StageForm from "./StageForm";
 import { EditorContext } from "../index";
-import { convertFormSettings } from "../helper";
-import { Loader } from "../types";
 
 export interface ISortableItemProps {
   index: number;
@@ -24,9 +21,7 @@ interface IDragItem {
 
 const SortableItem: React.FC<ISortableItemProps> = (props) => {
   const { index, itemData, moveFormItem, onClick } = props;
-  const { formSettings, selectedStageItemIndex, handleRemove } = useContext(
-    EditorContext
-  );
+  const { selectedStageItemIndex, handleRemove } = useContext(EditorContext);
   const className = classnames("item", {
     selected: selectedStageItemIndex === index,
   });
@@ -61,7 +56,7 @@ const SortableItem: React.FC<ISortableItemProps> = (props) => {
 
   function handleRemoveStageItem(e: React.MouseEvent) {
     e.stopPropagation();
-    if (handleRemove) handleRemove(itemData.id, index);
+    handleRemove && handleRemove(itemData.id, index);
   }
 
   return (
@@ -82,35 +77,12 @@ const SortableItem: React.FC<ISortableItemProps> = (props) => {
           </div>
         </div>
         <div className="component-wrapper">
-          <Form {...convertFormSettings(formSettings)}>
-            <Form.Item label={itemData.props.label || "标题"}>
-              <DynamicEngine
-                componentName={itemData.name}
-                componentProps={{ ...itemData.props, mode: Mode.Stage }}
-              />
-            </Form.Item>
-          </Form>
+          <StageForm formData={itemData} />
         </div>
       </div>
     </div>
   );
 };
-
-export function renderForm(loader: Loader, composes: any[]) {
-  return (
-    <Form>
-      {composes.map((item: any, index: number) => (
-        <Form.Item key={index} label={item.props.label || "标题"}>
-          <DynamicEngine
-            loader={loader}
-            componentName={item.name}
-            componentProps={{ ...item.props, mode: Mode.Stage }}
-          />
-        </Form.Item>
-      ))}
-    </Form>
-  );
-}
 
 SortableItem.displayName = "SortableItem";
 

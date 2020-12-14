@@ -1,5 +1,6 @@
-import { nanoid } from "nanoid";
 import React, { useContext } from "react";
+import { Icon } from "antd";
+import { nanoid } from "nanoid";
 import { useDrag, DragSourceMonitor } from "react-dnd";
 import { EditorContext } from "../index";
 
@@ -45,7 +46,9 @@ const Item: React.FC<ItemProps> = (props) => {
   return (
     <div className="item" style={{ opacity: isDragging ? 0.3 : 1 }}>
       <div ref={drag} className="item-content">
-        <div className="preview"></div>
+        <div className="preview">
+          <Icon type="build" />
+        </div>
         <div className="name">{label}</div>
       </div>
     </div>

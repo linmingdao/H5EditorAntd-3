@@ -1,10 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "antd";
 import "antd/dist/antd.css";
-import H5Editor, { renderForm } from "./Editor";
+import { Divider, Button } from "antd";
+import H5Editor, { renderFormByRegister } from "./Editor";
 import "./App.css";
 
 const App: React.FC = () => {
+  const [composes, setComposes] = useState<any[]>([
+    {
+      label: "输入框",
+      name: "TextInput",
+      props: { value: "我是输入框的默认值", name: "Ein-SBXAamJmI6pg6v9mt" },
+      id: "FsC-Lw5on51in4f6XVmGX",
+      type: "bricks",
+    },
+    {
+      label: "文本域",
+      name: "TextArea",
+      props: { value: "我是文本域的默认值", name: "ANLinusbI5PlhZzOmosv7" },
+      id: "kTZyVpfOsVaf8OZLIjY5i",
+      type: "bricks",
+    },
+    {
+      label: "下拉框",
+      name: "Selector",
+      id: "nQ0iko4mwrhs6uApK5oE-",
+      type: "bricks",
+      props: { name: "Ozz5c0yq4SND7Gfu7U2VO" },
+    },
+    {
+      label: "单选框",
+      name: "RadioGroup",
+      id: "igBQPEySM0nezTrb3oDCj",
+      type: "bricks",
+      props: { name: "vjuxIWq02oAgeaUAhRR-I" },
+    },
+    {
+      label: "复选框",
+      name: "CheckboxGroup",
+      id: "3Z-D6wdMuKr1E1RExu55H",
+      type: "bricks",
+      props: { name: "VgV8jyQyTkyD9zUHOp3oX" },
+    },
+    {
+      label: "添加注释",
+      name: "Notes",
+      id: "1leU3gXr8A7iAaWeMvnY5",
+      type: "bricks",
+      props: { name: "HWzhzKsQuaHv9ClRFS7RE" },
+    },
+    {
+      label: "日期选择器",
+      name: "DateTimeSelect",
+      id: "F8IfuGi5ELVjJyLdvA1eV",
+      type: "bricks",
+      props: { name: "oitTxdgkqAKYvGZYanr8U" },
+    },
+  ]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,7 +69,7 @@ const App: React.FC = () => {
           stageDropColor="#1890ff1c"
           className="blink-border"
           attLabelWrapperCol={[12, 12]}
-          style={{ width: 1300, height: 700 }}
+          style={{ width: 1500, height: 600 }}
           enableBuildingsFormSettings={true}
           bricks={{
             icon: <Icon type="build" />,
@@ -29,6 +82,33 @@ const App: React.FC = () => {
                 props: {
                   value: "我是输入框的默认值",
                 },
+              },
+              {
+                label: "文本域",
+                name: "TextArea",
+                props: {
+                  value: "我是文本域的默认值",
+                },
+              },
+              {
+                label: "下拉框",
+                name: "Selector",
+              },
+              {
+                label: "单选框",
+                name: "RadioGroup",
+              },
+              {
+                label: "复选框",
+                name: "CheckboxGroup",
+              },
+              {
+                label: "添加注释",
+                name: "Notes",
+              },
+              {
+                label: "日期选择器",
+                name: "DateTimeSelect",
               },
             ],
           }}
@@ -76,6 +156,7 @@ const App: React.FC = () => {
                 console.log(
                   JSON.stringify({ label: "文章模板", formSettings, composes })
                 );
+                setComposes(composes);
               },
             },
           ]}
@@ -89,42 +170,30 @@ const App: React.FC = () => {
             marginTop: 30,
           }}
         >
-          {renderForm(
-            (name: string) => () => import(`./Bricks/Components/${name}`),
-            [
-              {
-                label: "输入框",
-                name: "TextInput",
-                props: {
-                  value: "哈哈哈",
-                  name: "jTvPx-pzs-C4m2lin5IrT",
-                  label: "哈哈",
-                  placeholder: "请输入哈哈哈",
-                },
-                id: "6-0Kr_z_hEtGkqC2oxAt5",
-                type: "bricks",
-              },
-              {
-                label: "输入框",
-                name: "TextInput",
-                props: {
-                  value: "我是输入框的默认值",
-                  name: "u8_csOkHw7Ul3xvYF1Vq6",
-                },
-                id: "mF9Yj5NBZTpXPWkawWKzG",
-                type: "bricks",
-              },
-              {
-                label: "输入框",
-                name: "TextInput",
-                props: {
-                  value: "我是输入框的默认值",
-                  name: "9Wvf8W70fuK0_WKR3OwMb",
-                },
-                id: "3Q4WzAHjSk7QAlaWlctaB",
-                type: "bricks",
-              },
-            ]
+          {renderFormByRegister(
+            composes,
+            <>
+              <Divider />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Button type="default" title="取消">
+                  取消
+                </Button>
+                <Button
+                  title="提交"
+                  type="primary"
+                  htmlType="submit"
+                  style={{ marginLeft: 10 }}
+                >
+                  提交
+                </Button>
+              </div>
+            </>
           )}
         </div>
       </header>

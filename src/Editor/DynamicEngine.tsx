@@ -51,21 +51,27 @@ export const DynamicFunc = (loader: any, componentName: string) => {
 
 export interface DynamicEngineProps {
   loader?: Loader;
+  onChange?: (value: any) => void;
   componentName: string;
   componentProps: any;
 }
 
 const DynamicEngine = memo((props: DynamicEngineProps) => {
+  // console.log("DynamicEngine")
+  // console.log(props)
   const { uniformTmplGroupList } = useContext(EditorContext);
   const loader = props.loader ? props.loader : uniformTmplGroupList[0].loader;
-  const { componentName, componentProps } = props;
+  const { componentName, componentProps, onChange } = props;
+  const reactiveComponentProps = { ...componentProps, onChange };
 
   const Dynamic = useMemo(() => {
-    return (DynamicFunc(loader, componentName) as unknown) as FC<DynamicEngineProps>;
+    return (DynamicFunc(loader, componentName) as unknown) as FC<
+      DynamicEngineProps
+    >;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <Dynamic {...componentProps} />;
+  return <Dynamic {...reactiveComponentProps} />;
 });
 
 DynamicEngine.displayName = "DynamicEngine";

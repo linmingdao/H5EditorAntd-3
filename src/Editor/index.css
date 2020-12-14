@@ -94,7 +94,19 @@
   .list
   .item
   .item-content:hover {
+  color: #1890ff;
   border-color: #1890ff;
+}
+
+.antd-form-editor
+  .content
+  .templates
+  .category
+  .list
+  .item
+  .item-content:hover
+  .preview {
+  color: #1890ff;
 }
 
 .antd-form-editor
@@ -105,7 +117,12 @@
   .item
   .item-content
   .preview {
+  color: #686868;
+  font-size: 20px;
   height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .antd-form-editor
@@ -116,12 +133,16 @@
   .item
   .item-content
   .name {
+  box-sizing: border-box;
+  padding: 0 3px;
   text-align: center;
   font-size: 12px;
   height: 30px;
   line-height: 30px;
   background-color: #eee;
   color: #686868;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* end 模板列表 */
@@ -151,6 +172,7 @@
   border: 1px solid #fff;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .antd-form-editor .content .stage .item .operator {

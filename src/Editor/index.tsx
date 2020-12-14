@@ -13,7 +13,7 @@ import {
 } from "./types";
 import { getUniformTmplGroupList } from "./helper";
 import "./index.css";
-export { renderForm } from "./Stage/SortableItem";
+export { renderFormByRegister, renderFormByDynamicEngine } from "./Deserialize";
 
 export const EditorContext = React.createContext<H5EditorContext>({
   formSettings: { ...defaultFormSettings },
