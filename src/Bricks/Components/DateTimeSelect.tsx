@@ -14,6 +14,7 @@ interface PropTypes extends FormComponentProps {
   label?: string;
   rules?: string[];
   placeholder?: string;
+  disabled?: boolean;
   mode?: string;
   onChange?: (values: any) => void;
   onAttrPropsChange?: (changedValues: any, allValues: any) => void;
@@ -30,9 +31,10 @@ class Stage extends React.Component<PropTypes> {
   };
 
   render() {
-    const { value, placeholder } = this.props;
+    const { disabled, value, placeholder } = this.props;
     return (
       <DatePicker
+        disabled={disabled}
         value={value}
         showTime={true}
         format="YYYY-MM-DD HH:mm"

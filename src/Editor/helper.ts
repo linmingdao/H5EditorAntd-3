@@ -68,6 +68,9 @@ export function getComponentErrorTips(name?: string) {
 }
 
 export function checkStageName(stageItemList: StageItem[]): string {
+  if (!stageItemList || !stageItemList.length) {
+    return "您还未拖拽任何组件哟，请先拖拽基础组件组合生成您的模板~~";
+  }
   const nameMap: PlainMap = {};
   for (let item of stageItemList) {
     const name = item.props.name;

@@ -137,31 +137,33 @@ const App: React.FC = () => {
             marginTop: 30,
           }}
         >
-          {renderFormByRegister(
+          {renderFormByRegister({
             composes,
-            <>
-              <Divider />
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Button type="default" title="取消">
-                  取消
-                </Button>
-                <Button
-                  title="提交"
-                  type="primary"
-                  htmlType="submit"
-                  style={{ marginLeft: 10 }}
+            formFooter: (
+              <>
+                <Divider />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                  }}
                 >
-                  提交
-                </Button>
-              </div>
-            </>
-          )}
+                  <Button type="default" title="取消">
+                    取消
+                  </Button>
+                  <Button
+                    title="提交"
+                    type="primary"
+                    htmlType="submit"
+                    style={{ marginLeft: 10 }}
+                  >
+                    提交
+                  </Button>
+                </div>
+              </>
+            ),
+          })}
         </div>
       </header>
     </div>

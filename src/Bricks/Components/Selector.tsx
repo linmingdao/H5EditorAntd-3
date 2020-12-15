@@ -24,6 +24,7 @@ interface PropTypes extends FormComponentProps {
   rules?: string[];
   selectMode?: ModeOption;
   placeholder?: string;
+  disabled?: boolean;
   options?: string;
   optionsList?: any[];
   mode?: string;
@@ -42,10 +43,11 @@ class Stage extends React.Component<PropTypes> {
   };
 
   render() {
-    const { placeholder, value, selectMode, optionsList } = this.props;
+    const { disabled, placeholder, value, selectMode, optionsList } = this.props;
     return (
       <Select
         value={value}
+        disabled={disabled}
         placeholder={placeholder}
         onChange={this.handleChange}
         mode={selectMode ? selectMode : "default"}

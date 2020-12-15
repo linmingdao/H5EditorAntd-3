@@ -21,6 +21,7 @@ interface PropTypes extends FormComponentProps {
   label?: string;
   rules?: string[];
   options?: string;
+  disabled?: boolean;
   optionsList?: any[];
   mode?: string;
   onChange?: (values: any) => void;
@@ -39,9 +40,10 @@ class Stage extends React.Component<PropTypes> {
   };
 
   render() {
-    const { optionsList, value } = this.props;
+    const { disabled, optionsList, value } = this.props;
     return (
       <Radio.Group
+        disabled={disabled}
         value={value}
         options={optionsList}
         onChange={this.handleChange}

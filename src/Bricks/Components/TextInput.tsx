@@ -13,6 +13,7 @@ interface PropTypes extends FormComponentProps {
   label?: string;
   rules?: string[];
   placeholder?: string;
+  disabled?: boolean;
   mode?: string;
   onChange?: (values: any) => void;
   onAttrPropsChange?: (changedValues: any, allValues: any) => void;
@@ -30,9 +31,10 @@ class Stage extends React.Component<PropTypes> {
   };
 
   render() {
-    const { placeholder, value } = this.props;
+    const { disabled, placeholder, value } = this.props;
     return (
       <Input
+        disabled={disabled}
         value={value}
         placeholder={placeholder}
         onChange={this.handleChange}

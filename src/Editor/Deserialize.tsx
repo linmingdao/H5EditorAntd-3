@@ -5,10 +5,15 @@ import { RULES } from "../Bricks/validator";
 import { FormComponentProps } from "antd/es/form";
 import { BrickComponents } from "../Bricks";
 
-export function renderFormByRegister(
-  composes: any[],
-  formFooter: React.ReactNode
-) {
+interface RenderFormData {
+  disabled?: boolean;
+  composes: any[];
+  formFooter?: React.ReactNode;
+  userSubmitCb?: (values: any) => void;
+}
+
+export function renderFormByRegister(data: RenderFormData) {
+  const { disabled, composes, formFooter, userSubmitCb } = data;
   const CustomForm = Form.create<FormComponentProps>({
     name: "CustomForm",
   })(
@@ -17,7 +22,7 @@ export function renderFormByRegister(
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            console.log("Received values of form: ", values);
+            userSubmitCb && userSubmitCb(values);
           }
         });
       };
@@ -55,7 +60,9 @@ export function renderFormByRegister(
                       rules,
                       initialValue: item.props.value || "",
                     })(
-                      <BrickCompnent {...{ ...item.props, mode: Mode.Stage }} />
+                      <BrickCompnent
+                        {...{ ...item.props, disabled, mode: Mode.Stage }}
+                      />
                     )}
                   </Form.Item>
                 );

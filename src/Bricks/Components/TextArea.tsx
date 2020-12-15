@@ -14,6 +14,7 @@ interface PropTypes extends FormComponentProps {
   label?: string;
   rules?: string[];
   placeholder?: string;
+  disabled?: boolean;
   rows?: number;
   required?: string;
   mode?: string;
@@ -33,10 +34,11 @@ class Stage extends React.Component<PropTypes> {
   };
 
   render() {
-    const { placeholder, value, rows } = this.props;
+    const { disabled, placeholder, value, rows } = this.props;
     return (
       <TextArea
         value={value}
+        disabled={disabled}
         rows={rows ? rows : 4}
         placeholder={placeholder}
         onChange={this.handleChange}
