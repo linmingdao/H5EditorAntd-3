@@ -46,8 +46,8 @@ const Attributes: React.FC<IAttributes> = (props) => {
         />
       </div>
     ) : (
-      <Empty image={emptyImageType} description="还未选中任何控件哟~" />
-    );
+        <Empty image={emptyImageType} description="还未选中任何控件哟~" />
+      );
   }
 
   return (

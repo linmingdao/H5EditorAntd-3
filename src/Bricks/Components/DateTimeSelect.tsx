@@ -4,7 +4,12 @@ import { nanoid } from "nanoid";
 import { ALL_RULES } from "../validator";
 import { FormComponentProps } from "antd/es/form";
 import { Form, Input, DatePicker, Select } from "antd";
-import { attrLabelCol, attrWrapperCol, attrLabelAlign } from "../config";
+import {
+  attrLabelCol,
+  attrWrapperCol,
+  attrLabelAlign,
+  DATE_TIME_FORMAT,
+} from "../config";
 
 const { Option } = Select;
 
@@ -37,13 +42,18 @@ class Stage extends React.Component<PropTypes> {
         disabled={disabled}
         value={value}
         showTime={true}
-        format="YYYY-MM-DD HH:mm"
+        format={DATE_TIME_FORMAT}
         placeholder={placeholder}
         onChange={this.handleChange}
       />
     );
   }
 }
+
+const Preview: React.FC<PropTypes> = (props) => {
+  const { value } = props;
+  return <div>{moment(value.valueOf()).format(DATE_TIME_FORMAT)}</div>;
+};
 
 const Attr = Form.create<PropTypes>({
   name: "Attr",
@@ -80,7 +90,7 @@ const Attr = Form.create<PropTypes>({
               <DatePicker
                 value={value}
                 showTime={true}
-                format="YYYY-MM-DD HH:mm"
+                format={DATE_TIME_FORMAT}
                 placeholder="请选择"
               />
             )}
@@ -111,6 +121,8 @@ const DateTimeSelect: React.FC<PropTypes> = (props) => {
       return <Stage {...props} />;
     case "attr":
       return <Attr {...props} />;
+    case "preview":
+      return <Preview {...props} />;
     default:
       return <Stage {...props} />;
   }

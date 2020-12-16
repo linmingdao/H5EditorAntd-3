@@ -47,6 +47,10 @@ class Stage extends React.Component<PropTypes> {
   }
 }
 
+const Preview: React.FC<PropTypes> = (props) => {
+  return <pre>{props.value}</pre>;
+};
+
 const Attr = Form.create<PropTypes>({
   name: "Attr",
   onValuesChange(props, changedValues, allValues) {
@@ -118,6 +122,8 @@ const CTextArea: React.FC<PropTypes> = (props) => {
       return <Stage {...props} />;
     case "attr":
       return <Attr {...props} />;
+    case "preview":
+      return <Preview {...props} />;
     default:
       return <Stage {...props} />;
   }

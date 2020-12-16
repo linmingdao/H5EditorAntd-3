@@ -6,6 +6,7 @@ import { FormComponentProps } from "antd/es/form";
 import { BrickComponents } from "../Bricks";
 
 interface RenderFormData {
+  mode?: string;
   disabled?: boolean;
   composes: any[];
   formFooter?: React.ReactNode;
@@ -13,7 +14,7 @@ interface RenderFormData {
 }
 
 export function renderFormByRegister(data: RenderFormData) {
-  const { disabled, composes, formFooter, userSubmitCb } = data;
+  const { mode, disabled, composes, formFooter, userSubmitCb } = data;
   const CustomForm = Form.create<FormComponentProps>({
     name: "CustomForm",
   })(
@@ -38,36 +39,42 @@ export function renderFormByRegister(data: RenderFormData) {
             wrapperCol={{ span: 18 }}
             onSubmit={this.handleSubmit}
           >
-            {composes.map(
-              (
-                item: {
-                  props: {
-                    label: string;
+            {composes &&
+              composes.length &&
+              composes.map(
+                (
+                  item: {
+                    props: {
+                      label: string;
+                      name: string;
+                      value: any;
+                      rules: string[];
+                    };
                     name: string;
-                    value: any;
-                    rules: string[];
-                  };
-                  name: string;
-                },
-                index: number
-              ) => {
-                const BrickCompnent = BrickComponents[item.name]["instance"];
-                const _rules = item.props.rules || [];
-                const rules = _rules.map((ruleName) => RULES[ruleName]);
-                return (
-                  <Form.Item key={index} label={item.props.label || "标题"}>
-                    {getFieldDecorator(`${item.props.name}`, {
-                      rules,
-                      initialValue: item.props.value || "",
-                    })(
-                      <BrickCompnent
-                        {...{ ...item.props, disabled, mode: Mode.Stage }}
-                      />
-                    )}
-                  </Form.Item>
-                );
-              }
-            )}
+                  },
+                  index: number
+                ) => {
+                  const BrickCompnent = BrickComponents[item.name]["instance"];
+                  const _rules = item.props.rules || [];
+                  const rules = _rules.map((ruleName) => RULES[ruleName]);
+                  return (
+                    <Form.Item key={index} label={item.props.label || "标题"}>
+                      {getFieldDecorator(`${item.props.name}`, {
+                        rules,
+                        initialValue: item.props.value || "",
+                      })(
+                        <BrickCompnent
+                          {...{
+                            ...item.props,
+                            disabled,
+                            mode: mode ? mode : Mode.Stage,
+                          }}
+                        />
+                      )}
+                    </Form.Item>
+                  );
+                }
+              )}
             {formFooter}
           </Form>
         );

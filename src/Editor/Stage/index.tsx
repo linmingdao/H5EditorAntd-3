@@ -80,11 +80,11 @@ const Stage: React.FC = () => {
           />
         ))
       ) : (
-        <Empty
-          image={emptyImageType}
-          description="赶快拖拽组件来组合你的表单页面吧~"
-        />
-      )}
+          <Empty
+            image={emptyImageType}
+            description="赶快拖拽组件来组合你的表单页面吧~"
+          />
+        )}
     </div>
   );
 };

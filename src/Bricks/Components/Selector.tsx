@@ -43,7 +43,13 @@ class Stage extends React.Component<PropTypes> {
   };
 
   render() {
-    const { disabled, placeholder, value, selectMode, optionsList } = this.props;
+    const {
+      disabled,
+      placeholder,
+      value,
+      selectMode,
+      optionsList,
+    } = this.props;
     return (
       <Select
         value={value}
@@ -64,6 +70,27 @@ class Stage extends React.Component<PropTypes> {
     );
   }
 }
+
+const Preview: React.FC<PropTypes> = (props) => {
+  const { selectMode, optionsList, value } = props;
+  if (selectMode === "default") {
+    // 单选模式
+    const targetItem = optionsList && optionsList.length && (optionsList as any[]).find((item) => item.value === value);
+    return (<div>{targetItem ? targetItem.label : value}</div>);
+  } else {
+    // 多选模式
+    return (
+      <div>
+        {value &&
+          value.length &&
+          value.map((val: any) => {
+            const targetItem = (optionsList as any[]).find((item) => item.value === val);
+            return targetItem ? targetItem.label : val;
+          }).join(", ")}
+      </div>
+    );
+  }
+};
 
 const Attr = Form.create<PropTypes>({
   name: "Attr",
@@ -192,6 +219,8 @@ const Selector: React.FC<PropTypes> = (props) => {
       return <Stage {...props} optionsList={_options} />;
     case "attr":
       return <Attr {...props} optionsList={_options} />;
+    case "preview":
+      return <Preview {...props} optionsList={_options} />;
     default:
       return <Stage {...props} optionsList={_options} />;
   }

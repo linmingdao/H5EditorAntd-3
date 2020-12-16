@@ -51,6 +51,16 @@ class Stage extends React.Component<PropTypes> {
   }
 }
 
+const Preview: React.FC<PropTypes> = (props) => {
+  const { optionsList, value } = props;
+  return (
+    <div>{value && value.length && value.map((val) => {
+      const target = (optionsList as any[]).find((item) => item.value === val);
+      return target ? target.label : val;
+    }).join(", ")}</div>
+  );
+};
+
 const Attr = Form.create<PropTypes>({
   name: "Attr",
   onValuesChange(props, changedValues, allValues) {
@@ -149,6 +159,8 @@ const RadioGroup: React.FC<PropTypes> = (props) => {
       return <Stage {...props} optionsList={optionsList} />;
     case "attr":
       return <Attr {...props} optionsList={optionsList} />;
+    case "preview":
+      return <Preview {...props} optionsList={optionsList} />;
     default:
       return <Stage {...props} optionsList={optionsList} />;
   }
