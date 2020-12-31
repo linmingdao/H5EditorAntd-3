@@ -78,6 +78,8 @@ const Attr = Form.create<PropTypes>({
           <Form.Item label="value">
             {getFieldDecorator("value", {
               initialValue: value,
+              trigger: "onBlur",
+              valuePropName: "defaultValue",
             })(<Input placeholder="请输入" />)}
           </Form.Item>
           <Form.Item label="rules">
